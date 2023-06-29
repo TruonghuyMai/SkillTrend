@@ -134,7 +134,7 @@ export class AnalyticsComponent implements OnInit, AfterViewInit, OnDestroy
              const body = { 
              dataSource: 'Cluster0',
              database: 'Job',
-             collection: 'May',
+             collection: 'Jun',
              filter:{},
              sort: {Occurence:-1} };
              this.http.post<any>('https://us-east4.gcp.data.mongodb-api.com/app/data-gtnau/endpoint/data/v1/action/find', body, { headers }).subscribe(data => {
@@ -161,10 +161,11 @@ export class AnalyticsComponent implements OnInit, AfterViewInit, OnDestroy
              database: 'Job',
              collection: 'Total',
              filter:{},
-             sort: {Occurence:-1} };
+             sort: {_MONTH:1} };
              this.http.post<any>('https://us-east4.gcp.data.mongodb-api.com/app/data-gtnau/endpoint/data/v1/action/find', body, { headers }).subscribe(data => {
                 //console.log(data["documents"][0]['SQL'])
                 for(let i=0;i<12;i++){
+                    console.log(data["documents"][i]['_MONTH'])
                     this.dataSQL[i]=data["documents"][i]['SQL']
                     this.dataPython[i]=data["documents"][i]['PYTHON']
                     this.dataML[i]=data["documents"][i]['ML']
@@ -173,13 +174,13 @@ export class AnalyticsComponent implements OnInit, AfterViewInit, OnDestroy
 
                 }
                 //console.log(this.dataSQL)
-                this.dataSQL=this.dataProcess(this.dataSQL)
-                this.dataPython=this.dataProcess(this.dataPython)
-                this.dataML=this.dataProcess(this.dataML)
-                this.dataR=this.dataProcess(this.dataR)
-                this.dataSPark=this.dataProcess(this.dataSPark)
-                this.dataNameTop = ['Python','SQL','R','Spark','Machine Learning']
-                this.dataTop = [this.dataPython[11],this.dataSQL[11],this.dataR[11],this.dataSPark[11],this.dataML[11]]
+                //this.dataSQL=this.dataProcess(this.dataSQL)
+                //this.dataPython=this.dataProcess(this.dataPython)
+                //this.dataML=this.dataProcess(this.dataML)
+                //this.dataR=this.dataProcess(this.dataR)
+                //this.dataSPark=this.dataProcess(this.dataSPark)
+                this.dataNameTop = ['Python','SQL','R','Machine Learning','Spark']
+                this.dataTop = [this.dataPython[11],this.dataSQL[11],this.dataR[11],this.dataML[11],this.dataSPark[11]]
                 //console.log(this.dataSQL)
                 this._prepareChartData();
 
@@ -360,7 +361,6 @@ export class AnalyticsComponent implements OnInit, AfterViewInit, OnDestroy
               enabledOnSeries: [1]
             },
             labels: [
-              "July 2022",
               "Aug 2022",
               "Sep 2022",
               "Oct 2022",
@@ -372,6 +372,7 @@ export class AnalyticsComponent implements OnInit, AfterViewInit, OnDestroy
               "Apr 2023",
               "May 2023",
               "June 2023",
+              "July 2023"
             ],
             xaxis: {
               type: "datetime",
