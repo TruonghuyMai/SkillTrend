@@ -1,0 +1,23 @@
+// WARNING: For POST requests, body is set to null by browsers.
+var data = JSON.stringify({
+  "dataSource": "Cluster0",
+  "database": "test1",
+  "collection": "test1",
+  "filter": {}
+});
+
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function() {
+  if(this.readyState === 4) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("POST", "https://us-east4.gcp.data.mongodb-api.com/app/data-gtnau/endpoint/data/v1/action/find");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader("Access-Control-Request-Headers", "*");
+xhr.setRequestHeader("api-key", "yFM61Nysq5uhOs1hXU9C1khngWJuU5RBTAQbaEs1KKhF0uQKIOzLlkNG09Tw1KkW");
+
+xhr.send(data);

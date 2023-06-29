@@ -1,0 +1,6 @@
+{
+    "/app": {
+      "target": "https://us-east4.gcp.data.mongodb-api.com",
+      "secure": false
+    }
+  }
