@@ -134,7 +134,7 @@ export class AnalyticsComponent implements OnInit, AfterViewInit, OnDestroy
              const body = { 
              dataSource: 'Cluster0',
              database: 'Job',
-             collection: 'Jun',
+             collection: 'May',
              filter:{},
              sort: {Occurence:-1} };
              this.http.post<any>('https://us-east4.gcp.data.mongodb-api.com/app/data-gtnau/endpoint/data/v1/action/find', body, { headers }).subscribe(data => {
@@ -164,7 +164,7 @@ export class AnalyticsComponent implements OnInit, AfterViewInit, OnDestroy
              sort: {_MONTH:1} };
              this.http.post<any>('https://us-east4.gcp.data.mongodb-api.com/app/data-gtnau/endpoint/data/v1/action/find', body, { headers }).subscribe(data => {
                 //console.log(data["documents"][0]['SQL'])
-                for(let i=0;i<12;i++){
+                for(let i=0;i<11;i++){
                     console.log(data["documents"][i]['_MONTH'])
                     this.dataSQL[i]=data["documents"][i]['SQL']
                     this.dataPython[i]=data["documents"][i]['PYTHON']
@@ -180,7 +180,7 @@ export class AnalyticsComponent implements OnInit, AfterViewInit, OnDestroy
                 //this.dataR=this.dataProcess(this.dataR)
                 //this.dataSPark=this.dataProcess(this.dataSPark)
                 this.dataNameTop = ['Python','SQL','R','Machine Learning','Spark']
-                this.dataTop = [this.dataPython[11],this.dataSQL[11],this.dataR[11],this.dataML[11],this.dataSPark[11]]
+                this.dataTop = [this.dataPython[10],this.dataSQL[10],this.dataR[10],this.dataML[10],this.dataSPark[10]]
                 //console.log(this.dataSQL)
                 this._prepareChartData();
 
@@ -371,8 +371,7 @@ export class AnalyticsComponent implements OnInit, AfterViewInit, OnDestroy
               "Mar 2023",
               "Apr 2023",
               "May 2023",
-              "June 2023",
-              "July 2023"
+              "June 2023"
             ],
             xaxis: {
               type: "datetime",

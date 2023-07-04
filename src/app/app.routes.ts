@@ -8,6 +8,8 @@ import { LayoutComponent } from 'app/layout/layout.component';
 export const appRoutes: Route[] = [
 
     // Redirect empty path to '/dashboards/analytics'
+    {path: 'dashboards/analytics', pathMatch : 'full', redirectTo: 'dashboards/analytics'},
+
     {path: '', pathMatch : 'full', redirectTo: 'dashboards/analytics'},
 
     // Redirect signed-in user to the '/dashboards/project'
